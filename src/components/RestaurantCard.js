@@ -19,7 +19,10 @@ export default function RestaurantCard({
 }) {
   return (
     <TouchableOpacity style={tw`bg-white mr-3 shadow`}>
-      <Image source={{ uri: urlFor(imgUrl).url() }} style={tw`h-36 w-64 rounded-sm`} />
+      <Image
+        source={{ uri: urlFor(imgUrl).url() }}
+        style={tw`h-36 w-64 rounded-sm`}
+      />
       <View style={tw`px-3 pb-4`}>
         <Text style={tw`font-bold text-lg pt-2`}>{title}</Text>
         <View style={tw`flex-row items-center gap-1`}>
