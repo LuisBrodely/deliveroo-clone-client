@@ -16,7 +16,7 @@ import sanityClient from '../../sanity'
 export default function HomeScreen() {
   const navigation = useNavigation();
   const uri =
-    "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg";
+    "https://instagram.ftgz3-1.fna.fbcdn.net/v/t51.2885-19/292538549_1121014805153376_715208176497158886_n.jpg?stp=dst-jpg_s320x320&_nc_ht=instagram.ftgz3-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=k3T67ONjUiEAX-_7QS1&edm=AOQ1c0wBAAAA&ccb=7-5&oh=00_AfBzhx4kPTtDTRAknweBtHEKZjE-E8oPOiUPEd7dKm0eyg&oe=6432EF91&_nc_sid=8fd12b";
 
   const [featuredCategories, setFeaturedCategories] = useState([])
 
