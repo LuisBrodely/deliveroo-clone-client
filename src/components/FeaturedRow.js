@@ -13,22 +13,24 @@ export default function FeaturedRow({ title, description, id }) {
       .fetch(
         `
 				*[_type == 'featured' && _id == $id] {
-				...,
-				restaurants[]->{
 					...,
-					dishes->[],
-					type-> {
-						name
+					restaurants[]->{
+						...,
+						dishes[]->{
+              ...
+            },
+						type-> {
+							name
+						}
 					}
-				}
-			}[0]
+				}[0]
 			`,{ id })
       .then((data) => {
         setRestaurants(data?.restaurants);
       });
   }, []);
 
-  console.log(restaurants);
+  // console.log(restaurants);
 
   return (
     <View>

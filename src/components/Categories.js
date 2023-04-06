@@ -1,8 +1,21 @@
 import { View, Text, ScrollView } from "react-native";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import CategoryCard from "./CategoryCard";
+import sanityClient from '../../sanity'
+import { urlFor } from "../../sanity";
 
 export default function Categories() {
+
+	const [categories, setCategories] = useState([]);
+
+	useEffect(() => {
+    sanityClient.fetch(`
+			*[_type == 'category'] 
+    `).then(data => setCategories(data))
+  },[])
+
+	// console.log(categories)
+
   return (
     <ScrollView
       contentContainerStyle={{
@@ -12,36 +25,15 @@ export default function Categories() {
       horizontal
       showsHorizontalScrollIndicator={false}
     >
-      <CategoryCard
-        img={
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
-        }
-        title="Testing 1"
-      />
-      <CategoryCard
-        img={
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
-        }
-        title="Testing 1"
-      />
-      <CategoryCard
-        img={
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
-        }
-        title="Testing 1"
-      />
-      <CategoryCard
-        img={
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
-        }
-        title="Testing 1"
-      />
-      <CategoryCard
-        img={
-          "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg/800px-Steve_Jobs_Headshot_2010-CROP_%28cropped_2%29.jpg"
-        }
-        title="Testing 1"
-      />
+
+			{categories.map((categorie) => (
+				<CategoryCard
+					key={categorie._id}
+					img={urlFor(categorie.image).width(200).url()}
+					title={categorie.name}
+      	/>
+			))}
+      
     </ScrollView>
   );
 }
